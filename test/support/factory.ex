@@ -3,7 +3,6 @@ defmodule Blog.Factory do
 
   def post_factory do
     %{
-      uuid: Ecto.UUID.generate(),
       title: "Man I'm old, even being young",
       short_text: "It all began when I born. I was small, a baby and that happened!",
       body: "
@@ -18,6 +17,13 @@ defmodule Blog.Factory do
         ```
       ",
       tags: "code test a-lot loads no-space-word"
+    }
+  end
+  def comment_factory do
+    %{
+      email: "andre@andre.com",
+      name: "Andre",
+      body: "I love turtles"
     }
   end
 end
