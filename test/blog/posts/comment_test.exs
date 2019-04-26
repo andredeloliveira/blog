@@ -1,7 +1,5 @@
 defmodule Blog.CommenTest do
   use Blog.DataCase
-  import Blog.Factory
-
   alias Blog.Comment
 
   describe "changeset/2" do

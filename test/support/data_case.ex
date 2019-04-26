@@ -22,6 +22,8 @@ defmodule Blog.DataCase do
       import Ecto.Changeset
       import Ecto.Query
       import Blog.DataCase
+      import Blog.Factory
+      import Blog.Fixture
     end
   end
 

@@ -1,6 +1,5 @@
 defmodule Blog.PostTest do
   use Blog.DataCase
-  import Blog.Factory
 
   alias Blog.Post
 

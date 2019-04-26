@@ -7,7 +7,7 @@ defmodule Blog.Repo.Migrations.CreatePosts do
       add :title, :string
       add :slug, :string
       add :short_text, :string, size: 120
-      add :body, :string
+      add :body, :text
       add :tags, :string
       timestamps()
     end
