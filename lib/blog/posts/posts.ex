@@ -26,4 +26,11 @@ defmodule Blog.Posts  do
     end
   end
 
+  def delete_post(nil), do: {:error, :not_found, :post, nil}
+
+  def delete_post(%Post{} = post) do
+    post
+    |> Repo.delete()
+  end
+
 end
