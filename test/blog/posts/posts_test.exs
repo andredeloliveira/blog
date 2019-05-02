@@ -40,7 +40,9 @@ defmodule Blog.PostsTest  do
     test "Should return a message of not found if no id is passed" do
       assert {:error, :not_found, :post, nil} = Posts.get_post(nil)
     end
+  end
 
+  describe "delete_post/1" do
     @tag :unit
     test "Should delete a post when it exists", %{post: post} do
       assert {:ok, deleted_post} = Posts.delete_post(post)
@@ -51,6 +53,16 @@ defmodule Blog.PostsTest  do
     @tag :unit
     test "Should not delete a post if it does not exist" do
       assert {:error, :not_found, :post, nil} = Posts.delete_post(nil)
+    end
+  end
+
+  describe "get_all_posts/0" do
+    @tag :unit
+    test "should get all the posts" do
+      {:ok, _post} = fixture(:post)
+      assert posts = Posts.get_all_posts()
+      assert is_list(posts)
+      assert length(posts) > 0
     end
   end
 

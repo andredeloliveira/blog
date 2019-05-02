@@ -20,6 +20,9 @@ defmodule BlogWeb.ConnCase do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
       import BlogWeb.Router.Helpers
+      import Blog.Fixture
+      import Blog.Factory
+      import Blog.JsonViews
 
       # The default endpoint for testing
       @endpoint BlogWeb.Endpoint
