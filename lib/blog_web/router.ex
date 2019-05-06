@@ -1,13 +1,13 @@
 defmodule BlogWeb.Router do
   use BlogWeb, :router
 
-  pipeline :browser do
-    plug(:accepts, ["html"])
-    plug(:fetch_session)
-    plug(:fetch_flash)
-    plug(:protect_from_forgery)
-    plug(:put_secure_browser_headers)
-  end
+  # pipeline :browser do
+  #   plug(:accepts, ["html"])
+  #   plug(:fetch_session)
+  #   plug(:fetch_flash)
+  #   plug(:protect_from_forgery)
+  #   plug(:put_secure_browser_headers)
+  # end
 
   pipeline :api do
     plug(:accepts, ["json"])
@@ -16,7 +16,7 @@ defmodule BlogWeb.Router do
   scope "/", BlogWeb do
     # Use the default browser stack
     pipe_through(:api)
-    resources("/posts", PostController, only: [:index, :show, :create, :delete])
+    resources("/posts", PostController)
   end
 
   # Other scopes may use custom stacks.

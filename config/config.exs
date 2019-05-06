@@ -7,15 +7,16 @@ use Mix.Config
 
 # General application configuration
 config :blog,
-  ecto_repos: [Blog.Repo]
+  ecto_repos: [Blog.Repo],
+  origin: ["http://localhost:3000"]
 
 # Configures the endpoint
 config :blog, BlogWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "cM75r5/lmrkuc0I3/4EbAbpLJgJF9X5o5oiSkMra+o1zhL3BdH9e5EGozatRfC4c",
   render_errors: [view: BlogWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Blog.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: Blog.PubSub, adapter: Phoenix.PubSub.PG2],
+  check_origin: ["http://localhost:3000"]
 
 # Configures Elixir's Logger
 config :logger, :console,
@@ -24,4 +25,4 @@ config :logger, :console,
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
-import_config "#{Mix.env}.exs"
+import_config "#{Mix.env()}.exs"
