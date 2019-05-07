@@ -2,6 +2,8 @@ defmodule BlogWeb.PostController do
   use BlogWeb, :controller
   alias Blog.{Post, Posts}
 
+  action_fallback(BlogWeb.FallbackController)
+
   def index(conn, _) do
     posts = Posts.get_all_posts()
     render(conn, "index.json", posts: posts)
