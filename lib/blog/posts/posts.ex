@@ -42,4 +42,10 @@ defmodule Blog.Posts do
     post
     |> Repo.delete()
   end
+
+  def edit_post(%Post{} = post, attrs) do
+    post
+    |> Post.update_changeset(attrs)
+    |> Repo.update()
+  end
 end

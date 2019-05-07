@@ -1,7 +1,7 @@
 defmodule Blog.PostControllerTest do
   use BlogWeb.ConnCase
 
-  alias Blog.{Post, Posts}
+  alias Blog.{Posts}
 
   setup %{conn: conn} do
     {:ok, post} = fixture(:post)
@@ -46,6 +46,24 @@ defmodule Blog.PostControllerTest do
       conn = delete(conn, post_path(conn, :delete, post))
       assert response(conn, 204)
       assert [] = Posts.get_all_posts()
+    end
+  end
+
+  describe "update/2" do
+    @tag :post_web
+    test "should update a post if params are correct", %{conn: conn, post: post} do
+      conn =
+        put(conn, post_path(conn, :update, post.uuid),
+          post: %{
+            title: "oh yeah",
+            short_text: "yeh",
+            tags: "oh shit",
+            body: "morty"
+          }
+        )
+
+      {:ok, updated_post} = Posts.get_post(post.uuid)
+      assert json_response(conn, 200)["data"] == json_view(:post, updated_post)
     end
   end
 end

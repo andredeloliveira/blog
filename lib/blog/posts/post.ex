@@ -26,4 +26,10 @@ defmodule Blog.Post do
     |> unique_constraint(:uuid)
   end
 
+  def update_changeset(%Post{} = post, attrs) do
+    post
+    |> cast(attrs, @params)
+    |> validate_required([:title, :short_text, :body, :tags])
+    |> validate_length(:short_text, min: 1, max: 140)
+  end
 end

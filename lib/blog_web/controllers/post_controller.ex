@@ -23,9 +23,16 @@ defmodule BlogWeb.PostController do
   end
 
   def delete(conn, %{"id" => id}) do
-    with {:ok, post} <- Posts.get_post_by(id: id),
+    with {:ok, post} <- Posts.get_post_by(uuid: id),
          {:ok, %Post{}} <- Posts.delete_post(post) do
       send_resp(conn, :no_content, "")
+    end
+  end
+
+  def update(conn, %{"id" => id, "post" => params}) do
+    with {:ok, post} <- Posts.get_post_by(uuid: id),
+         {:ok, %Post{} = updated_post} <- Posts.edit_post(post, params) do
+      render(conn, "show.json", post: updated_post)
     end
   end
 end

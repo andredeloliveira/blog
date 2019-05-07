@@ -1,9 +1,9 @@
-defmodule Blog.PostsTest  do
+defmodule Blog.PostsTest do
   use Blog.DataCase
   import Blog.Factory
   alias Blog.Posts
 
-  setup  do
+  setup do
     {:ok, post} = fixture(:post)
     %{post: post}
   end
@@ -18,13 +18,12 @@ defmodule Blog.PostsTest  do
 
     @tag :unit
     test "should not create a post if data is invalid" do
-      attrs = %{ name: "oh man" }
-      assert {:error, %Ecto.Changeset{} } = Posts.create_post(attrs)
+      attrs = %{name: "oh man"}
+      assert {:error, %Ecto.Changeset{}} = Posts.create_post(attrs)
     end
   end
 
   describe "get_post/1" do
-
     @tag :unit
     test "Should find a post if it exists", %{post: post} do
       assert {:ok, found_post} = Posts.get_post(post.uuid)
@@ -33,7 +32,7 @@ defmodule Blog.PostsTest  do
 
     @tag :unit
     test "Should return a message error if post does not exist" do
-      assert {:error, :not_found, :post, "1234" } = Posts.get_post("1234")
+      assert {:error, :not_found, :post, "1234"} = Posts.get_post("1234")
     end
 
     @tag :unit
@@ -66,4 +65,20 @@ defmodule Blog.PostsTest  do
     end
   end
 
+  describe "update_post" do
+    @tag :unit
+    test "should update a post with correct attrs" do
+      {:ok, post} = fixture(:post)
+
+      attrs = %{
+        title: "new title",
+        short_text: "oh man, oh jeez",
+        body: "not big",
+        tags: "should stay the same, or not"
+      }
+
+      assert {:ok, new_post} = Posts.edit_post(post, attrs)
+      assert new_post.body == attrs.body
+    end
+  end
 end
