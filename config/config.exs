@@ -23,6 +23,11 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:user_id]
 
+config :blog, BlogWeb.Guardian,
+  issuer: "blog",
+  # change the location to a envoironment var
+  secret_key: "j5SX20DJ/duDBG+Www2TBstWRUGKUBZAkiXqdGCWKJxjcgT6sN3uwX29efVxD7Vs"
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"

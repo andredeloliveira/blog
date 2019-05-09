@@ -19,11 +19,20 @@ defmodule Blog.Factory do
       tags: "code test a-lot loads no-space-word"
     }
   end
+
   def comment_factory do
     %{
       email: "andre@andre.com",
       name: "Andre",
       body: "I love turtles"
+    }
+  end
+
+  def user_factory do
+    %{
+      email: "andre@andre.com",
+      password: "secret",
+      password_confirmation: "secret"
     }
   end
 end
