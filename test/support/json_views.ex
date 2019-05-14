@@ -21,5 +21,4 @@ defmodule Blog.JsonViews do
       "inserted_at" => NaiveDateTime.to_iso8601(post.inserted_at)
     }
   end
-
 end

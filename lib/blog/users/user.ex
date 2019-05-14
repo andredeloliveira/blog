@@ -18,7 +18,6 @@ defmodule Blog.User do
     |> cast(attrs, [:email, :password])
     |> validate_required([:email, :password])
     |> validate_password(:password)
-    |> put_change(:uuid, Ecto.UUID.generate())
     |> validate_email(:email)
   end
 
@@ -26,6 +25,7 @@ defmodule Blog.User do
     user
     |> cast(attrs, [:email, :password, :password_confirmation])
     |> validate_required([:email, :password, :password_confirmation])
+    |> put_change(:uuid, Ecto.UUID.generate())
     |> validate_password(:password)
     |> validate_email(:email)
   end
