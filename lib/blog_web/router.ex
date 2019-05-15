@@ -16,8 +16,10 @@ defmodule BlogWeb.Router do
       post("/identity/callback", AuthenticationController, :identity_callback)
     end
 
+    resources("/posts", PostController, except: [:create, :delete, :update])
     pipe_through(:authenticated)
-    resources("/posts", PostController)
+    post("/posts", PostController, :create)
+    put("/posts", PostController, :update)
     resources("/users", UserController, except: [:new, :edit])
   end
 end
