@@ -32,7 +32,7 @@ config :blog, Blog.Guardian,
   issuer: "Blog",
   secret_key: "QL1JKSoSJda/wV1IcZ1NjJZtk21vOjUA2ByUt1mraxjXMfhspWpdPKrI/TE0Pmez",
   permissions: %{
-    default: [:read_users, :write_users]
+    default: [:read_users, :write_users, :admin]
   }
 
 config :ueberauth, Ueberauth,
