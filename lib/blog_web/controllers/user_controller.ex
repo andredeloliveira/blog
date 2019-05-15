@@ -1,25 +1,49 @@
 defmodule BlogWeb.UserController do
   use BlogWeb, :controller
 
-  alias BlogWeb.Authenticator
-  alias Blog.{Users}
+  alias Blog.Accounts
+  alias Blog.Accounts.User
+  plug(Guardian.Permissions.Bitwise, ensure: %{default: [:read_users]})
+
+  plug(
+    Guardian.Permissions.Bitwise,
+    [ensure: %{default: [:write_users]}] when action in [:create, :update, :delete]
+  )
 
   action_fallback(BlogWeb.FallbackController)
 
-  def show(conn, %{"id" => id} = _params) do
-    with {:ok, user} <- Users.get_user(id) do
+  def index(conn, _params) do
+    users = Accounts.list_users()
+    render(conn, "index.json", users: users)
+  end
+
+  def create(conn, %{"user" => user_params}) do
+    with {:ok, %User{} = user} <- Accounts.create_user(user_params) do
+      conn
+      |> put_status(:created)
+      |> put_resp_header("location", user_path(conn, :show, user))
+      |> render("show.json", user: user)
+    end
+  end
+
+  def show(conn, %{"id" => id}) do
+    user = Accounts.get_user!(id)
+    render(conn, "show.json", user: user)
+  end
+
+  def update(conn, %{"id" => id, "user" => user_params}) do
+    user = Accounts.get_user!(id)
+
+    with {:ok, %User{} = user} <- Accounts.update_user(user, user_params) do
       render(conn, "show.json", user: user)
     end
   end
 
-  def create(conn, %{"user" => params}) do
-    with {:ok, user} <- Users.create_user(params),
-         conn <- Authenticator.login(conn, user),
-         token <- Authenticator.current_token(conn) do
-      conn
-      |> put_status(:created)
-      |> put_view(SessionView)
-      |> render("show.json", user: user, token: token)
+  def delete(conn, %{"id" => id}) do
+    user = Accounts.get_user!(id)
+
+    with {:ok, %User{}} <- Accounts.delete_user(user) do
+      send_resp(conn, :no_content, "")
     end
   end
 end

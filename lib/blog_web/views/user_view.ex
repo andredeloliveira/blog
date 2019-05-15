@@ -2,14 +2,18 @@ defmodule BlogWeb.UserView do
   use BlogWeb, :view
   alias BlogWeb.UserView
 
+  def render("index.json", %{users: users}) do
+    %{data: render_many(users, UserView, "user.json")}
+  end
+
   def render("show.json", %{user: user}) do
     %{data: render_one(user, UserView, "user.json")}
   end
 
   def render("user.json", %{user: user}) do
-    %{
-      id: user.uuid,
-      email: user.email
-    }
+    %{id: user.id,
+      username: user.username,
+      hashed_password: user.hashed_password,
+      permissions: user.permissions}
   end
 end

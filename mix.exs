@@ -41,8 +41,10 @@ defmodule Blog.Mixfile do
       {:gettext, "~> 0.11"},
       {:plug_cowboy, "~> 1.0"},
       {:cors_plug, "~> 2.0"},
-      {:guardian, "~> 1.2"},
-      {:comeonin, "~> 4.0"},
+      {:ueberauth, "~> 0.5.0"},
+      {:ueberauth_identity, "~> 0.2.3"},
+      {:guardian, "~> 1.0"},
+      {:comeonin, "~> 4.1"},
       {:bcrypt_elixir, "~> 1.0"},
       {:ex_machina, "~> 2.2", only: [:test, :dev]}
     ]

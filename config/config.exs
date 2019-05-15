@@ -28,6 +28,30 @@ config :blog, BlogWeb.Guardian,
   # change the location to a envoironment var
   secret_key: "j5SX20DJ/duDBG+Www2TBstWRUGKUBZAkiXqdGCWKJxjcgT6sN3uwX29efVxD7Vs"
 
+config :blog, Blog.Guardian,
+  issuer: "Blog",
+  secret_key: "QL1JKSoSJda/wV1IcZ1NjJZtk21vOjUA2ByUt1mraxjXMfhspWpdPKrI/TE0Pmez",
+  permissions: %{
+    default: [:read_users, :write_users]
+  }
+
+config :ueberauth, Ueberauth,
+  base_path: "/auth",
+  providers: [
+    identity:
+      {Ueberauth.Strategy.Identity,
+       [
+         callback_methods: ["POST"],
+         nickname_field: :username,
+         param_nesting: "user",
+         uid_field: :username
+       ]}
+  ]
+
+config :blog, BlogWeb.Plug.AuthAccessPipeline,
+  module: Blog.Guardian,
+  error_handler: BlogWeb.Plug.AuthErrorHandler
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
