@@ -43,6 +43,7 @@ pre_erlang_clean_compile() {
       [ -f ~/.profile ] && source ~/.profile
       set -e
       cd '$BUILD_AT'/assets
+     
     "
 
   status "Running phoenix.digest" # log output prepended with "----->"
