@@ -42,7 +42,17 @@ defmodule BlogWeb.Endpoint do
     signing_salt: "5pZN7c27"
   )
 
-  plug(CORSPlug, origin: "http://localhost:3000")
+  plug(CORSPlug,
+    origin: [
+      "http://localhost:3000",
+      "http://www.ordinaryfunction.net",
+      "https://www.ordinaryfunction.net",
+      "https://silly-allen-e5ba92.netlify.com/",
+      "http://ordinaryfunction.net",
+      "https://ordinaryfunction.net"
+    ]
+  )
+
   plug(BlogWeb.Router)
 
   @doc """
