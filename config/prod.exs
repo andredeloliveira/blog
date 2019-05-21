@@ -11,7 +11,7 @@ use Mix.Config
 # before starting your production server.
 config :blog, BlogWeb.Endpoint,
   http: [port: {:system, "PORT"}],
-  url: [host: "api.ordinaryfunction.net", port: 80],
+  url: [host: "139.59.155.199", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json",
   server: true,
   code_reloader: false

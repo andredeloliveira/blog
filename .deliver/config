@@ -12,7 +12,7 @@ CLEAN_DEPLOY=true
 # prevent re-installing node modules; this defaults to "."
 GIT_CLEAN_PATHS="_build rel priv/static"
 
-PRODUCTION_HOSTS="api.ordinaryfunction.net"
+PRODUCTION_HOSTS="139.59.155.199"
 PRODUCTION_USER="deploy"
 DELIVER_TO="/home/deploy/apps"
 
