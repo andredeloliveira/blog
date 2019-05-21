@@ -2,7 +2,7 @@
 
 APP="blog"
 
-BUILD_HOST="api.ordinaryfunction.net"
+BUILD_HOST="139.59.155.199"
 BUILD_USER="deploy"
 BUILD_AT="/tmp/edeliver/$APP/builds"
 
