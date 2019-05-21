@@ -13,12 +13,6 @@ config :blog, BlogWeb.Endpoint,
   http: [port: {:system, "PORT"}],
   url: [host: "api.ordinaryfunction.net", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json",
-  https: [
-    port: 443,
-    otp_app: :blog,
-    keyfile: System.get_env("priv/keys/localhost.key"),
-    certfile: System.get_env("priv/keys/localhost.cert")
-  ],
   server: true,
   code_reloader: false
 
