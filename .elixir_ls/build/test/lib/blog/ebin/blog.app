@@ -1,5 +1,5 @@
 {application,blog,
-             [{applications,[kernel,stdlib,elixir,logger,runtime_tools,ssl,
+             [{applications,[kernel,stdlib,elixir,logger,runtime_tools,
                              edeliver,gettext,bcrypt_elixir,comeonin,
                              phoenix_pubsub,postgrex,ex_machina,distillery,
                              phoenix,phoenix_html,plug_cowboy,cors_plug,
