@@ -10,9 +10,16 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :blog, BlogWeb.Endpoint,
+  force_ssl: [rewrite_on: [:x_forwarded_proto], host: nil],
   http: [port: {:system, "PORT"}],
   url: [host: "139.59.155.199", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json",
+  https: [
+    port: 443,
+    otp_app: :blog,
+    keyfile: System.get_env("priv/keys/localhost.key"),
+    certfile: System.get_env("priv/keys/localhost.cert")
+  ],
   server: true,
   code_reloader: false
 
