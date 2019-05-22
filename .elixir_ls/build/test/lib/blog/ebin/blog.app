@@ -34,5 +34,5 @@
                         'Elixir.BlogWeb.UserSocket',
                         'Elixir.BlogWeb.UserView']},
               {registered,[]},
-              {vsn,"0.0.1"},
+              {vsn,"0.0.2"},
               {mod,{'Elixir.Blog.Application',[]}}]}.
